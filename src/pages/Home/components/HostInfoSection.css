@@ -1,0 +1,57 @@
+.host-info-section {
+  width: 100%;
+  padding: 50px 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.host-info-container {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.host-item {
+  text-align: left;
+}
+
+.host-line {
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  color: #555;
+  margin: 0;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.parent-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.child-name {
+  font-weight: 600;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .host-info-section {
+    padding: 40px 20px;
+  }
+
+  .host-info-container {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .host-info-section {
+    padding: 35px 16px;
+  }
+
+  .host-info-container {
+    gap: 20px;
+  }
+}

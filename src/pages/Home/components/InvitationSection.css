@@ -1,0 +1,61 @@
+.invitation-section {
+  width: 100%;
+  padding: 60px 20px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.invitation-container {
+  max-width: 600px;
+  text-align: center;
+}
+
+.invitation-title {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  text-transform: uppercase;
+}
+
+.divider {
+  width: 60px;
+  height: 1px;
+  background-color: #999;
+  margin: 0 auto 25px;
+}
+
+.invitation-subtitle {
+  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 25px 0;
+}
+
+.invitation-message {
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  line-height: 1.8;
+  color: #555;
+  margin: 0;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .invitation-section {
+    padding: 50px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .invitation-section {
+    padding: 40px 16px;
+  }
+
+  .invitation-message {
+    line-height: 1.7;
+  }
+}

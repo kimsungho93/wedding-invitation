@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './GallerySection.css';
 
 // Import all gallery images
@@ -67,18 +67,52 @@ const GallerySection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
+
+  // Preload adjacent images
+  const preloadImages = useCallback((index: number) => {
+    const indicesToPreload = [
+      index - 2,
+      index - 1,
+      index + 1,
+      index + 2,
+    ].filter(i => i >= 0 && i < allImages.length);
+
+    indicesToPreload.forEach(i => {
+      const img = new Image();
+      img.src = allImages[i];
+    });
+  }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      preloadImages(currentIndex);
+    }
+  }, [currentIndex, isModalOpen, preloadImages]);
+
+  // Handle body scroll lock
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isModalOpen]);
 
   const openModal = (index: number) => {
     setCurrentIndex(index);
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    document.body.style.overflow = 'auto';
   };
 
   const goToPrevious = () => {
@@ -92,14 +126,26 @@ const GallerySection: React.FC = () => {
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
+    setIsDragging(true);
+    setDragOffset(0);
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    const currentTouch = e.targetTouches[0].clientX;
+    setTouchEnd(currentTouch);
+    if (touchStart !== null) {
+      setDragOffset(currentTouch - touchStart);
+    }
   };
 
   const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    setIsDragging(false);
+
+    if (!touchStart || !touchEnd) {
+      setDragOffset(0);
+      return;
+    }
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
@@ -109,6 +155,8 @@ const GallerySection: React.FC = () => {
     } else if (isRightSwipe) {
       goToPrevious();
     }
+
+    setDragOffset(0);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -161,12 +209,40 @@ const GallerySection: React.FC = () => {
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
+            ref={imageContainerRef}
           >
-            <img
-              src={allImages[currentIndex]}
-              alt={`Gallery ${currentIndex + 1}`}
-              className="modal-image"
-            />
+            <div
+              className="modal-slider"
+              style={{
+                transform: `translateX(calc(-100% + ${dragOffset}px))`,
+                transition: isDragging ? 'none' : 'transform 0.3s ease-out',
+              }}
+            >
+              {/* Previous Image */}
+              <div className="modal-slide">
+                <img
+                  src={allImages[currentIndex === 0 ? allImages.length - 1 : currentIndex - 1]}
+                  alt={`Gallery ${currentIndex === 0 ? allImages.length : currentIndex}`}
+                  className="modal-image"
+                />
+              </div>
+              {/* Current Image */}
+              <div className="modal-slide">
+                <img
+                  src={allImages[currentIndex]}
+                  alt={`Gallery ${currentIndex + 1}`}
+                  className="modal-image"
+                />
+              </div>
+              {/* Next Image */}
+              <div className="modal-slide">
+                <img
+                  src={allImages[currentIndex === allImages.length - 1 ? 0 : currentIndex + 1]}
+                  alt={`Gallery ${currentIndex === allImages.length - 1 ? 1 : currentIndex + 2}`}
+                  className="modal-image"
+                />
+              </div>
+            </div>
           </div>
 
           <button className="modal-nav modal-prev" onClick={(e) => { e.stopPropagation(); goToPrevious(); }}>

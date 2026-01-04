@@ -143,6 +143,64 @@
   right: 10px;
 }
 
+/* Countdown */
+.countdown {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.countdown-title {
+  font-size: 0.9rem;
+  color: #999;
+  margin: 0 0 16px 0;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.countdown-boxes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.countdown-box {
+  background: linear-gradient(145deg, #fafafa, #f0f0f0);
+  border-radius: 12px;
+  padding: 14px 10px;
+  min-width: 58px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.countdown-number {
+  display: block;
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
+  font-weight: 600;
+  color: #d4a373;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1;
+}
+
+.countdown-label {
+  display: block;
+  font-size: 0.6rem;
+  color: #aaa;
+  margin-top: 6px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.countdown-heart {
+  margin: 16px 0 0 0;
+  font-size: 1rem;
+  color: #e8b4b8;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
 @media (max-width: 480px) {
   .calendar-section {
     padding: 50px 20px;
@@ -174,5 +232,19 @@
   .flower-bottom-right {
     bottom: 10px;
     right: 6px;
+  }
+
+  .countdown {
+    margin-top: 30px;
+  }
+
+  .countdown-boxes {
+    gap: 8px;
+  }
+
+  .countdown-box {
+    min-width: 50px;
+    padding: 12px 8px;
+    border-radius: 10px;
   }
 }

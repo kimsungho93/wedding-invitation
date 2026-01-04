@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './CalendarSection.css';
+
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
 
 const CalendarSection: React.FC = () => {
   const year = 2026;
   const month = 3; // March
   const weddingDay = 28;
+
+  // 결혼식 날짜: 2026년 3월 28일 오후 12시 30분
+  const weddingDate = new Date(2026, 2, 28, 12, 30, 0);
+
+  const calculateTimeLeft = (): TimeLeft => {
+    const now = new Date();
+    const difference = weddingDate.getTime() - now.getTime();
+
+    if (difference <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  };
+
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   // 2026년 3월의 달력 데이터 생성
   const firstDayOfMonth = new Date(year, month - 1, 1).getDay(); // 0 = Sunday
@@ -61,6 +97,29 @@ const CalendarSection: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="countdown">
+          <p className="countdown-title">결혼식까지</p>
+          <div className="countdown-boxes">
+            <div className="countdown-box">
+              <span className="countdown-number">{timeLeft.days}</span>
+              <span className="countdown-label">DAYS</span>
+            </div>
+            <div className="countdown-box">
+              <span className="countdown-number">{String(timeLeft.hours).padStart(2, '0')}</span>
+              <span className="countdown-label">HOURS</span>
+            </div>
+            <div className="countdown-box">
+              <span className="countdown-number">{String(timeLeft.minutes).padStart(2, '0')}</span>
+              <span className="countdown-label">MINS</span>
+            </div>
+            <div className="countdown-box">
+              <span className="countdown-number">{String(timeLeft.seconds).padStart(2, '0')}</span>
+              <span className="countdown-label">SECS</span>
+            </div>
+          </div>
+          <p className="countdown-heart">♥</p>
         </div>
       </div>
     </section>

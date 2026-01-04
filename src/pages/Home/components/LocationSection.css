@@ -1,0 +1,272 @@
+.location-section {
+  width: 100%;
+  padding: 60px 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.location-container {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.location-title {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+  color: #333;
+  font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  text-transform: uppercase;
+}
+
+.location-venue {
+  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 16px 0;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.location-address-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.location-address {
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: #666;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.location-copy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #fafafa, #f0f0f0);
+  border: none;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  color: #666;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.location-copy-button:hover {
+  background: linear-gradient(145deg, #f0f0f0, #e8e8e8);
+  transform: translateY(-1px);
+}
+
+.location-copy-button:active {
+  transform: translateY(0);
+}
+
+.location-copy-button svg {
+  display: block;
+}
+
+.location-call-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(145deg, #fafafa, #f0f0f0);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  cursor: pointer;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  margin-bottom: 30px;
+}
+
+.location-call-button:hover {
+  background: linear-gradient(145deg, #f0f0f0, #e8e8e8);
+  transform: translateY(-1px);
+}
+
+.location-call-button:active {
+  transform: translateY(0);
+}
+
+.location-call-button svg {
+  flex-shrink: 0;
+}
+
+.location-map {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.location-map img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Location Info */
+.location-info {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.location-info-item {
+  margin-bottom: 20px;
+}
+
+.location-info-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #333;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.location-info-label svg {
+  color: #d4a373;
+}
+
+.location-info-detail {
+  padding-left: 22px;
+}
+
+.location-info-text {
+  margin: 0 0 8px 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.location-info-sub {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.5;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.location-info-tag {
+  flex-shrink: 0;
+  background-color: #f5f0eb;
+  color: #d4a373;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.location-info-notice {
+  margin-top: 24px;
+  padding: 20px 16px;
+  background: linear-gradient(145deg, #fafafa, #f5f5f5);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Traffic Light */
+.traffic-light {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.traffic-light-body {
+  display: flex;
+  gap: 6px;
+  background: #333;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+.light {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.light.red {
+  background-color: #ff6b6b;
+  animation: blink-red 3s ease-in-out infinite;
+}
+
+.light.yellow {
+  background-color: #ffd93d;
+  animation: blink-yellow 3s ease-in-out infinite;
+}
+
+.light.green {
+  background-color: #6bcb77;
+  animation: blink-green 3s ease-in-out infinite;
+}
+
+@keyframes blink-red {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px #ff6b6b; }
+  33%, 66% { opacity: 0.3; box-shadow: none; }
+}
+
+@keyframes blink-yellow {
+  0%, 33% { opacity: 0.3; box-shadow: none; }
+  35%, 65% { opacity: 1; box-shadow: 0 0 8px #ffd93d; }
+  66%, 100% { opacity: 0.3; box-shadow: none; }
+}
+
+@keyframes blink-green {
+  0%, 66% { opacity: 0.3; box-shadow: none; }
+  68%, 98% { opacity: 1; box-shadow: 0 0 8px #6bcb77; }
+}
+
+.location-info-notice p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.7;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@media (max-width: 480px) {
+  .location-section {
+    padding: 50px 20px;
+  }
+
+  .location-title {
+    margin-bottom: 24px;
+  }
+
+  .location-address-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .location-call-button {
+    padding: 10px 20px;
+    margin-bottom: 24px;
+  }
+
+  .location-info {
+    margin-top: 24px;
+  }
+
+  .location-info-notice {
+    padding: 14px;
+  }
+}

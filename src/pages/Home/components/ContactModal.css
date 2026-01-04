@@ -99,7 +99,7 @@
 .contact-info {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 36px;
 }
 
 .contact-role {

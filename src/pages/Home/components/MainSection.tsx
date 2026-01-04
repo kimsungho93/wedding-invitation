@@ -33,13 +33,6 @@ const MainSection: React.FC = () => {
         <div className="overlay-content">
           <h1 className="main-title">We're Getting Married</h1>
         </div>
-        <div className="bottom-info">
-          <div className="wedding-info">
-            <p className="venue">아모르아트컨벤션</p>
-            <p className="hall">2층 그랜드홀</p>
-            <p className="datetime">2026.03.28 | 토요일 | 12:30PM</p>
-          </div>
-        </div>
       </div>
     </section>
   );

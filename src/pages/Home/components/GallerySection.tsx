@@ -212,36 +212,17 @@ const GallerySection: React.FC = () => {
             ref={imageContainerRef}
           >
             <div
-              className="modal-slider"
+              className="modal-image-wrapper"
               style={{
-                transform: `translateX(calc(-100% + ${dragOffset}px))`,
+                transform: `translateX(${dragOffset}px)`,
                 transition: isDragging ? 'none' : 'transform 0.3s ease-out',
               }}
             >
-              {/* Previous Image */}
-              <div className="modal-slide">
-                <img
-                  src={allImages[currentIndex === 0 ? allImages.length - 1 : currentIndex - 1]}
-                  alt={`Gallery ${currentIndex === 0 ? allImages.length : currentIndex}`}
-                  className="modal-image"
-                />
-              </div>
-              {/* Current Image */}
-              <div className="modal-slide">
-                <img
-                  src={allImages[currentIndex]}
-                  alt={`Gallery ${currentIndex + 1}`}
-                  className="modal-image"
-                />
-              </div>
-              {/* Next Image */}
-              <div className="modal-slide">
-                <img
-                  src={allImages[currentIndex === allImages.length - 1 ? 0 : currentIndex + 1]}
-                  alt={`Gallery ${currentIndex === allImages.length - 1 ? 1 : currentIndex + 2}`}
-                  className="modal-image"
-                />
-              </div>
+              <img
+                src={allImages[currentIndex]}
+                alt={`Gallery ${currentIndex + 1}`}
+                className="modal-image"
+              />
             </div>
           </div>
 

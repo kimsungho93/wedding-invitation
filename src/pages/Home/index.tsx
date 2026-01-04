@@ -5,6 +5,7 @@ import InvitationSection from './components/InvitationSection';
 import HostInfoSection from './components/HostInfoSection';
 import ContactSection from './components/ContactSection';
 import GallerySection from './components/GallerySection';
+import CalendarSection from './components/CalendarSection';
 import './styles.css';
 
 const Home: React.FC = () => {
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
       <HostInfoSection />
       <ContactSection />
       <GallerySection />
+      <CalendarSection />
     </div>
   );
 };
